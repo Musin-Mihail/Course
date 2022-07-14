@@ -7,6 +7,7 @@
         List<Cell> cells = new List<Cell>();
         List<Part> parts = new List<Part>();
         bool error = false;
+        int color = 1;
         public void StartGame()
         {
             try
@@ -124,10 +125,11 @@
         }
         void InsertPart(int X, int Y, int partWidth, int partHeight)
         {
-            Random random = new Random();
-            int r = random.Next(0, 255);
-            int g = random.Next(0, 255);
-            int b = random.Next(0, 255);
+            color++;
+            if (color > 14)
+            {
+                color = 1;
+            }
             for (int x = X; x < partWidth + X; x++)
             {
                 for (int y = Y; y < partHeight + Y; y++)
@@ -136,32 +138,7 @@
                     {
                         if (cell.x == x && cell.y == y)
                         {
-                            cell.r = r;
-                            cell.g = g;
-                            cell.b = b;
-                            cell.busy = true;
-                        }
-                    }
-                }
-            }
-        }
-        void InsertPartRotary(int X, int Y, Part part)
-        {
-            Random random = new Random();
-            int r = random.Next(0, 255);
-            int g = random.Next(0, 255);
-            int b = random.Next(0, 255);
-            for (int x = X; x < part.height + X; x++)
-            {
-                for (int y = Y; y < part.width + Y; y++)
-                {
-                    foreach (Cell cell in cells)
-                    {
-                        if (cell.x == x && cell.y == y)
-                        {
-                            cell.r = r;
-                            cell.g = g;
-                            cell.b = b;
+                            cell.color = color;
                             cell.busy = true;
                         }
                     }
@@ -198,7 +175,8 @@
                             {
                                 count++;
                             }
-                            Console.Write($"\u001b[48;2;{cell.r};{cell.g};{cell.b}m{"  "}");
+                            Console.BackgroundColor = (System.ConsoleColor)cell.color;
+                            Console.Write("  ");
                         }
                     }
                 }
@@ -218,10 +196,7 @@
         public bool busy = false;
         public int x = 0;
         public int y = 0;
-
-        public int r = 255;
-        public int g = 255;
-        public int b = 255;
+        public int color = 15;
     }
     class Part
     {

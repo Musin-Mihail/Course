@@ -5,7 +5,6 @@
         static void Main()
         {
             Console.Clear();
-            Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine("Какую программу запустить? Введите цифру");
             Console.WriteLine("1. Игра в слова");
             Console.WriteLine("2. Разделение на части");
