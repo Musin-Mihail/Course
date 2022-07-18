@@ -1,6 +1,6 @@
 ﻿namespace Course
 {
-    internal class MainCourse
+    public class MainCourse
     {
         static void Main()
         {
