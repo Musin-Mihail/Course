@@ -5,46 +5,47 @@
         bool stopGame = false;
         int errorCount = 3;
         string CurrentWord = "";
+        public Char endCurrentchar = ' ';
+        public bool startGame = false;
+        public List<string> usedWords = new List<string>();
+        public List<string> dictionary = new List<string>();
         public void StartGame()
         {
             string[] array = File.ReadAllLines("dict.txt");
-            List<string> dictionary = array.ToList();
-            List<string> usedWords = new List<string>();
-            bool startGame = false;
-            Char endCurrentchar = ' ';
-            FirstMove(usedWords, dictionary, ref startGame, ref endCurrentchar);
-            Game(ref usedWords, ref dictionary, startGame, ref endCurrentchar);
+            dictionary = array.ToList();
+            FirstMove();
+            Game();
             Console.WriteLine("Конец игры");
         }
-        void FirstMove(List<string> usedWords, List<string> dictionary, ref bool startGame, ref Char endCurrentchar)
+        void FirstMove()
         {
             Console.Clear();
             Console.WriteLine("Введите первое слов и нажмите Enter");
             string word = Console.ReadLine();
 
-            if (WordCheck(ref usedWords, dictionary, word, startGame, ref endCurrentchar) == true)
+            if (WordCheck(word) == true)
             {
                 startGame = true;
             }
             else
             {
-                FirstMove(usedWords, dictionary, ref startGame, ref endCurrentchar);
+                FirstMove();
             }
         }
-        void Game(ref List<string> usedWords, ref List<string> dictionary, bool startGame, ref Char endCurrentchar)
+        void Game()
         {
             while (stopGame == false)
             {
-                ComputerMove(ref usedWords, ref dictionary, ref endCurrentchar);
-                PlayerTurn(ref usedWords, dictionary, startGame, ref endCurrentchar);
+                ComputerMove();
+                PlayerTurn();
             }
         }
-        void ComputerMove(ref List<string> usedWords, ref List<string> dictionary, ref Char endCurrentchar)
+        void ComputerMove()
         {
-            ListShuffling(ref dictionary);
-            SearchWord(ref usedWords, dictionary, ref endCurrentchar);
+            ListShuffling();
+            SearchWord();
         }
-        void ListShuffling(ref List<string> dictionary)
+        void ListShuffling()
         {
             Random rnd = new Random();
             for (int i = 0; i < dictionary.Count; i++)
@@ -55,7 +56,7 @@
                 dictionary[randomIndex] = temp;
             }
         }
-        void SearchWord(ref List<string> usedWords, List<string> dictionary, ref Char endCurrentchar)
+        void SearchWord()
         {
             foreach (string word in dictionary)
             {
@@ -63,23 +64,23 @@
                 {
                     if (word[0] == endCurrentchar)
                     {
-                        SetCurrentWord(ref usedWords, word, ref endCurrentchar);
+                        SetCurrentWord(word);
                         return;
                     }
                 }
             }
         }
-        void PlayerTurn(ref List<string> usedWords, List<string> dictionary, bool startGame, ref Char endCurrentchar)
+        void PlayerTurn()
         {
             Console.WriteLine("Компьютер выбрал слово - \"" + CurrentWord + "\"");
             Console.WriteLine("Ход игрока. Введите слово начинающиеся на букву \"" + endCurrentchar + "\" и нажмите Enter");
             string word = Console.ReadLine();
-            if (WordCheck(ref usedWords, dictionary, word, startGame, ref endCurrentchar) == false && stopGame == false)
+            if (WordCheck(word) == false && stopGame == false)
             {
-                PlayerTurn(ref usedWords, dictionary, startGame, ref endCurrentchar);
+                PlayerTurn();
             }
         }
-        public bool WordCheck(ref List<string> usedWords, List<string> dictionary, string word, bool startGame, ref Char endCurrentchar)
+        public bool WordCheck(string word)
         {
             //Console.Clear();
             if (!Console.IsOutputRedirected) Console.Clear();
@@ -100,7 +101,7 @@
                                 Error();
                                 return false;
                             }
-                            SetCurrentWord(ref usedWords, word, ref endCurrentchar);
+                            SetCurrentWord(word);
                             Console.WriteLine("Ваше слово - \"" + SaveWord + "\"");
                             return true;
                         }
@@ -109,12 +110,12 @@
                             Console.WriteLine("Первая буква вашего слова отличается от последней буквы предыдущего слова");
                             Error();
                             return false;
+                        }
                     }
-                }
                     else
                     {
                         Console.WriteLine("Ваше слово - \"" + SaveWord + "\"");
-                        SetCurrentWord(ref usedWords, word, ref endCurrentchar);
+                        SetCurrentWord(word);
                         return true;
                     }
                 }
@@ -131,7 +132,7 @@
             Console.WriteLine("Введите слово состоящие минимум из двух букв.");
             return false;
         }
-        void SetCurrentWord(ref List<string> usedWords, string word, ref Char endCurrentchar)
+        void SetCurrentWord(string word)
         {
             word = word.ToUpper();
             CurrentWord = word;
