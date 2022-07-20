@@ -9,6 +9,7 @@
             Console.WriteLine("1. Игра в слова");
             Console.WriteLine("2. Разделение на части");
             Console.WriteLine("3. Посчитать слова");
+            Console.WriteLine("4. Перевод цифр в слова");
             Console.WriteLine("");
             Console.WriteLine("9. Тестовая область");
 
@@ -27,6 +28,10 @@
                 else if (firstChar == '3')
                 {
                     CountWords();
+                }
+                else if (firstChar == '4')
+                {
+                    ConvertInt();
                 }
                 else if (firstChar == '9')
                 {
@@ -49,6 +54,11 @@
         {
             CountWords countWords = new CountWords();
             countWords.StartGame();
+        }
+        static void ConvertInt()
+        {
+            ConvertInt сonvertInt = new ConvertInt();
+            сonvertInt.StartGame();
         }
         static void Testing()
         {

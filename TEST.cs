@@ -1,33 +1,46 @@
 ﻿namespace Course
 {
+    // Помощь ученика
     internal class TEST
     {
-        List<Person> listPerson = new List<Person>();
         public void StartGame()
         {
-            Add();
-            Write();
-            Console.ReadKey();  
-        }
-        public void Add()
-        {
-            for (int i = 0; i < 10; i++)
+            Console.Clear();
+            string text = "привет пока привет привет пока ";
+            string[] words = GetStringList(text);
+            if (words.Length > 0)
             {
-                Person person = new Person();
-                person.name = "Имя";
-                listPerson.Add(person);
+                Console.WriteLine("Общее количество слов :" + words.Length);
             }
+            CountWords(words);
+            Console.ReadLine();
         }
-        public void Write()
+
+        public string[] GetStringList(string text2)
         {
-            foreach (var item in listPerson)
+            string[] words = text2.Split(new char[] { '-', '.', '?', '!', ')', '(', ',', ':', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            return words;
+        }
+
+        public int CountWords(string[] words)
+        {
+            var result = words.GroupBy(x => x).Select(x => new { Word = x.Key, Repeating = x.Count() });
+            List<TestClass> newList = new List<TestClass>();
+            foreach (var item in result)
             {
-                Console.WriteLine(item.name);
+                TestClass testClass = new TestClass();
+                testClass.str = item.Word;
+                testClass.i = item.Repeating;
+                newList.Add(testClass);
+                Console.WriteLine("Слово: {0}\tКоличество повторов: {1}", item.Word, item.Repeating);
             }
+            return newList.Count;
         }
-        class Person
+
+        public class TestClass
         {
-            public string name = "";
+            public string str;
+            public int i;
         }
     }
 }
