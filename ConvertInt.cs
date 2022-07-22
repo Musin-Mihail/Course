@@ -4,7 +4,9 @@ namespace Course
     public class ConvertInt
     {
         List<int> listInt = new List<int>();
-        public long number = 100400700;
+        //public long number = 100000000000;
+
+        public long number = 908070605040;
         public void StartGame()
         {
             string result = Convert();
@@ -15,8 +17,8 @@ namespace Course
         {
             IntToList(number);
             string newString = "";
-            newString = number1_2(1) + newString;
-            newString = number3(3) + newString;
+            newString = numberTwo(1, "") + newString;
+            newString = numberOne(3, "") + newString;
             newString = numberTwo(4, " тысяч ") + newString;
             newString = numberOne(6, " тысяч ") + newString;
             newString = numberTwo(7, " миллионов ") + newString;
@@ -41,37 +43,6 @@ namespace Course
                 }
             }
         }
-        string number1_2(int index)
-        {
-            string newString = "";
-            if (listInt[index] == 1)
-            {
-                newString = div12(listInt[index - 1]) + newString;
-            }
-            else
-            {
-                newString = div1(listInt[index - 1]) + newString;
-                if (listInt[index] != 0 && listInt[index - 1] != 0)
-                {
-                    newString = " " + newString;
-                }
-                newString = div10(listInt[index]) + newString;
-            }
-            return newString;
-        }
-        string number3(int index)
-        {
-            string newString = "";
-            newString += div100(listInt[index - 1]);
-            if (listInt[index - 1] != 0)
-            {
-                if (listInt[index - 2] != 0 || listInt[index - 3] != 0)
-                {
-                    newString += " ";
-                }
-            }
-            return newString;
-        }
         string numberTwo(int index, string name)
         {
             string newString = "";
@@ -81,13 +52,21 @@ namespace Course
             }
             else
             {
-                if (name == " тысяч ")
+                if (name == "")
+                {
+                    newString = div1(listInt[index - 1]) + newString;
+                }
+                else if (name == " тысяч ")
                 {
                     newString = div1Thousand(listInt[index - 1]) + newString;
                 }
                 else if (name == " миллионов ")
                 {
                     newString = div1Million(listInt[index - 1]) + newString;
+                }
+                else if (name == " триллионов ")
+                {
+                    newString = div1Trillion(listInt[index - 1]) + newString;
                 }
                 if (listInt[index] != 0 && listInt[index - 1] == 0)
                 {
@@ -108,9 +87,12 @@ namespace Course
             {
                 newString = name + newString;
             }
-            if (listInt[index - 1] != 0 && listInt[index - 2] != 0)
+            if (listInt[index - 1] != 0)
             {
-                newString = " " + newString;
+                if (listInt[index - 2] != 0 || listInt[index - 3] != 0)
+                {
+                    newString = " " + newString;
+                }
             }
             newString = div100(listInt[index - 1]) + newString;
             return newString;
@@ -338,7 +320,7 @@ namespace Course
 
             if (number == 1)
             {
-                newString = "одна миллион";
+                newString = "один миллион";
             }
             else if (number == 2)
             {
@@ -373,6 +355,52 @@ namespace Course
                 newString = "девять миллионов";
             }
             if (listInt[6] != 0)
+            {
+                newString += " ";
+            }
+            return newString;
+        }
+        string div1Trillion(int number)
+        {
+            string newString = "";
+
+            if (number == 1)
+            {
+                newString = "один триллион ";
+            }
+            else if (number == 2)
+            {
+                newString = "две триллиона";
+            }
+            else if (number == 3)
+            {
+                newString = "три триллиона";
+            }
+            else if (number == 4)
+            {
+                newString = "четыре триллиона";
+            }
+            else if (number == 5)
+            {
+                newString = "пять триллионов";
+            }
+            else if (number == 6)
+            {
+                newString = "шесть триллионов";
+            }
+            else if (number == 7)
+            {
+                newString = "семь триллионов";
+            }
+            else if (number == 8)
+            {
+                newString = "восемь триллионов";
+            }
+            else if (number == 9)
+            {
+                newString = "девять триллионов";
+            }
+            if (listInt[9] != 0)
             {
                 newString += " ";
             }
