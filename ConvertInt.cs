@@ -4,7 +4,7 @@ namespace Course
     public class ConvertInt
     {
         List<int> listInt = new List<int>();
-        public long number = 12345678912;
+        public long number = 100400700;
         public void StartGame()
         {
             string result = Convert();
@@ -65,7 +65,10 @@ namespace Course
             newString += div100(listInt[index - 1]);
             if (listInt[index - 1] != 0)
             {
-                newString += " ";
+                if (listInt[index - 2] != 0 || listInt[index - 3] != 0)
+                {
+                    newString += " ";
+                }
             }
             return newString;
         }
