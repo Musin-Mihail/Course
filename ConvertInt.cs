@@ -4,7 +4,7 @@ namespace Course
     public class ConvertInt
     {
         List<int> listInt = new List<int>();
-        public int number = 900002;
+        public int number = 900000009;
         public void StartGame()
         {
             string result = Convert();
@@ -19,6 +19,8 @@ namespace Course
             newString = number3() + newString;
             newString = number4_5() + newString;
             newString = number6() + newString;
+            newString = number7_8() + newString;
+            newString = number9() + newString;
             return newString;
         }
         void IntToList(int number)
@@ -99,6 +101,42 @@ namespace Course
                 newString = " " + newString;
             }
             newString = div100(listInt[5]) + newString;
+            return newString;
+        }
+        string number7_8()
+        {
+            string newString = "";
+            if (listInt[7] == 1)
+            {
+                newString = div12(listInt[6]) + " миллионов " + newString;
+            }
+            else
+            {
+                newString = div1Million(listInt[6]) + newString;
+                if (listInt[7] != 0 && listInt[6] == 0)
+                {
+                    newString = " миллионов " + newString;
+                }
+                if (listInt[7] != 0 && listInt[6] != 0)
+                {
+                    newString = " " + newString;
+                }
+                newString = div10(listInt[7]) + newString;
+            }
+            return newString;
+        }
+        string number9()
+        {
+            string newString = "";
+            if (listInt[8] != 0 && listInt[7] == 0 && listInt[6] == 0)
+            {
+                newString = " миллионов " + newString;
+            }
+            if (listInt[8] != 0 && listInt[7] != 0)
+            {
+                newString = " " + newString;
+            }
+            newString = div100(listInt[8]) + newString;
             return newString;
         }
         string div1(int number)
@@ -313,6 +351,52 @@ namespace Course
                 newString = "девять тысяч";
             }
             if (listInt[3] != 0)
+            {
+                newString += " ";
+            }
+            return newString;
+        }
+        string div1Million(int number)
+        {
+            string newString = "";
+
+            if (number == 1)
+            {
+                newString = "одна миллион";
+            }
+            else if (number == 2)
+            {
+                newString = "две миллиона";
+            }
+            else if (number == 3)
+            {
+                newString = "три миллиона";
+            }
+            else if (number == 4)
+            {
+                newString = "четыре миллиона";
+            }
+            else if (number == 5)
+            {
+                newString = "пять миллионов";
+            }
+            else if (number == 6)
+            {
+                newString = "шесть миллионов";
+            }
+            else if (number == 7)
+            {
+                newString = "семь миллионов";
+            }
+            else if (number == 8)
+            {
+                newString = "восемь миллионов";
+            }
+            else if (number == 9)
+            {
+                newString = "девять миллионов";
+            }
+            if (listInt[6] != 0)
             {
                 newString += " ";
             }
