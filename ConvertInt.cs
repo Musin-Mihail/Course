@@ -4,9 +4,8 @@ namespace Course
     public class ConvertInt
     {
         List<int> listInt = new List<int>();
-        //public long number = 100000000000;
 
-        public long number = 908070605040;
+        public long number = 908070605040123;
         public void StartGame()
         {
             string result = Convert();
@@ -18,13 +17,10 @@ namespace Course
             IntToList(number);
             string newString = "";
             newString = numberTwo(1, "") + newString;
-            newString = numberOne(3, "") + newString;
             newString = numberTwo(4, " тысяч ") + newString;
-            newString = numberOne(6, " тысяч ") + newString;
             newString = numberTwo(7, " миллионов ") + newString;
-            newString = numberOne(9, " миллионов ") + newString;
-            newString = numberTwo(10, " триллионов ") + newString;
-            newString = numberOne(12, " триллионов ") + newString;
+            newString = numberTwo(10, " миллиардов ") + newString;
+            newString = numberTwo(13, " триллионов ") + newString;
             return newString;
         }
         void IntToList(long number)
@@ -64,6 +60,10 @@ namespace Course
                 {
                     newString = div1Million(listInt[index - 1]) + newString;
                 }
+                else if (name == " миллиардов ")
+                {
+                    newString = div1Billion(listInt[index - 1]) + newString;
+                }
                 else if (name == " триллионов ")
                 {
                     newString = div1Trillion(listInt[index - 1]) + newString;
@@ -78,6 +78,7 @@ namespace Course
                 }
                 newString = div10(listInt[index]) + newString;
             }
+            newString = numberOne(index + 2, name) + newString;
             return newString;
         }
         string numberOne(int index, string name)
@@ -360,6 +361,52 @@ namespace Course
             }
             return newString;
         }
+        string div1Billion(int number)
+        {
+            string newString = "";
+
+            if (number == 1)
+            {
+                newString = "один миллиард ";
+            }
+            else if (number == 2)
+            {
+                newString = "две миллиарда";
+            }
+            else if (number == 3)
+            {
+                newString = "три миллиарда";
+            }
+            else if (number == 4)
+            {
+                newString = "четыре миллиарда";
+            }
+            else if (number == 5)
+            {
+                newString = "пять миллиардов";
+            }
+            else if (number == 6)
+            {
+                newString = "шесть миллиардов";
+            }
+            else if (number == 7)
+            {
+                newString = "семь миллиардов";
+            }
+            else if (number == 8)
+            {
+                newString = "восемь миллиардов";
+            }
+            else if (number == 9)
+            {
+                newString = "девять миллиардов";
+            }
+            if (listInt[9] != 0)
+            {
+                newString += " ";
+            }
+            return newString;
+        }
         string div1Trillion(int number)
         {
             string newString = "";
@@ -400,7 +447,7 @@ namespace Course
             {
                 newString = "девять триллионов";
             }
-            if (listInt[9] != 0)
+            if (listInt[12] != 0)
             {
                 newString += " ";
             }
