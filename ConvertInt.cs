@@ -4,7 +4,7 @@ namespace Course
     public class ConvertInt
     {
         List<int> listInt = new List<int>();
-        public int number = 900000009;
+        public long number = 12345678912;
         public void StartGame()
         {
             string result = Convert();
@@ -15,19 +15,21 @@ namespace Course
         {
             IntToList(number);
             string newString = "";
-            newString = number1_2() + newString;
-            newString = number3() + newString;
-            newString = number4_5() + newString;
-            newString = number6() + newString;
-            newString = number7_8() + newString;
-            newString = number9() + newString;
+            newString = number1_2(1) + newString;
+            newString = number3(3) + newString;
+            newString = numberTwo(4, " тысяч ") + newString;
+            newString = numberOne(6, " тысяч ") + newString;
+            newString = numberTwo(7, " миллионов ") + newString;
+            newString = numberOne(9, " миллионов ") + newString;
+            newString = numberTwo(10, " триллионов ") + newString;
+            newString = numberOne(12, " триллионов ") + newString;
             return newString;
         }
-        void IntToList(int number)
+        void IntToList(long number)
         {
             string numberString = number.ToString();
 
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 20; i++)
             {
                 if (i < numberString.Length)
                 {
@@ -39,104 +41,75 @@ namespace Course
                 }
             }
         }
-        string number1_2()
+        string number1_2(int index)
         {
             string newString = "";
-            if (listInt[1] == 1)
+            if (listInt[index] == 1)
             {
-                newString = div12(listInt[0]) + newString;
+                newString = div12(listInt[index - 1]) + newString;
             }
             else
             {
-                newString = div1(listInt[0]) + newString;
-                if (listInt[1] != 0 && listInt[0] != 0)
+                newString = div1(listInt[index - 1]) + newString;
+                if (listInt[index] != 0 && listInt[index - 1] != 0)
                 {
                     newString = " " + newString;
                 }
-                newString = div10(listInt[1]) + newString;
+                newString = div10(listInt[index]) + newString;
             }
             return newString;
         }
-        string number3()
+        string number3(int index)
         {
             string newString = "";
-            newString += div100(listInt[2]);
-            if (listInt[2] != 0)
+            newString += div100(listInt[index - 1]);
+            if (listInt[index - 1] != 0)
             {
                 newString += " ";
             }
             return newString;
         }
-        string number4_5()
+        string numberTwo(int index, string name)
         {
             string newString = "";
-            if (listInt[4] == 1)
+            if (listInt[index] == 1)
             {
-                newString = div12(listInt[3]) + " тысяч " + newString;
+                newString = div12(listInt[index - 1]) + name + newString;
             }
             else
             {
-                newString = div1Thousand(listInt[3]) + newString;
-                if (listInt[4] != 0 && listInt[3] == 0)
+                if (name == " тысяч ")
                 {
-                    newString = " тысяч " + newString;
+                    newString = div1Thousand(listInt[index - 1]) + newString;
                 }
-                if (listInt[4] != 0 && listInt[3] != 0)
+                else if (name == " миллионов ")
                 {
-                    newString = " " + newString;
+                    newString = div1Million(listInt[index - 1]) + newString;
                 }
-                newString = div10(listInt[4]) + newString;
-            }
-            return newString;
-        }
-        string number6()
-        {
-            string newString = "";
-            if (listInt[5] != 0 && listInt[4] == 0 && listInt[3] == 0)
-            {
-                newString = " тысяч " + newString;
-            }
-            if (listInt[5] != 0 && listInt[4] != 0)
-            {
-                newString = " " + newString;
-            }
-            newString = div100(listInt[5]) + newString;
-            return newString;
-        }
-        string number7_8()
-        {
-            string newString = "";
-            if (listInt[7] == 1)
-            {
-                newString = div12(listInt[6]) + " миллионов " + newString;
-            }
-            else
-            {
-                newString = div1Million(listInt[6]) + newString;
-                if (listInt[7] != 0 && listInt[6] == 0)
+                if (listInt[index] != 0 && listInt[index - 1] == 0)
                 {
-                    newString = " миллионов " + newString;
+                    newString = name + newString;
                 }
-                if (listInt[7] != 0 && listInt[6] != 0)
+                if (listInt[index] != 0 && listInt[index - 1] != 0)
                 {
                     newString = " " + newString;
                 }
-                newString = div10(listInt[7]) + newString;
+                newString = div10(listInt[index]) + newString;
             }
             return newString;
         }
-        string number9()
+        string numberOne(int index, string name)
         {
             string newString = "";
-            if (listInt[8] != 0 && listInt[7] == 0 && listInt[6] == 0)
+            if (listInt[index - 1] != 0 && listInt[index - 2] == 0 && listInt[index - 3] == 0)
             {
-                newString = " миллионов " + newString;
+                newString = name + newString;
             }
-            if (listInt[8] != 0 && listInt[7] != 0)
+            if (listInt[index - 1] != 0 && listInt[index - 2] != 0)
             {
                 newString = " " + newString;
             }
-            newString = div100(listInt[8]) + newString;
+            newString = div100(listInt[index - 1]) + newString;
             return newString;
         }
         string div1(int number)
