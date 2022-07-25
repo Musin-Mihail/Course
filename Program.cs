@@ -1,4 +1,6 @@
-﻿namespace Course
+﻿using System.Diagnostics;
+
+namespace Course
 {
     internal class MainCourse
     {
@@ -10,6 +12,7 @@
             Console.WriteLine("2. Разделение на части");
             Console.WriteLine("3. Посчитать слова");
             Console.WriteLine("4. Перевод цифр в слова");
+            Console.WriteLine("5. Авторизация. WindowsForms");
             Console.WriteLine("");
             Console.WriteLine("9. Тестовая область");
 
@@ -32,6 +35,14 @@
                 else if (firstChar == '4')
                 {
                     ConvertInt();
+                }
+                else if (firstChar == '5')
+                {
+                    var process = new Process();
+                    process.StartInfo.FileName = $"TestingWindowsForms\\TestingWindowsForms.exe";
+                    process.Start();
+                    process.WaitForExit();
+                    process.Close();
                 }
                 else if (firstChar == '9')
                 {
