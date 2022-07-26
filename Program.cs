@@ -13,6 +13,7 @@ namespace Course
             Console.WriteLine("3. Посчитать слова");
             Console.WriteLine("4. Перевод цифр в слова");
             Console.WriteLine("5. Авторизация. WindowsForms");
+            Console.WriteLine("6. Авторизация. WPF");
             Console.WriteLine("");
             Console.WriteLine("9. Тестовая область");
 
@@ -38,11 +39,11 @@ namespace Course
                 }
                 else if (firstChar == '5')
                 {
-                    var process = new Process();
-                    process.StartInfo.FileName = $"TestingWindowsForms\\TestingWindowsForms.exe";
-                    process.Start();
-                    process.WaitForExit();
-                    process.Close();
+                    AuthWindowsForms();
+                }
+                else if (firstChar == '6')
+                {
+                    AuthWPF();
                 }
                 else if (firstChar == '9')
                 {
@@ -70,6 +71,22 @@ namespace Course
         {
             ConvertInt сonvertInt = new ConvertInt();
             сonvertInt.StartGame();
+        }
+        static void AuthWindowsForms()
+        {
+            var process = new Process();
+            process.StartInfo.FileName = $"TestingWindowsForms\\TestingWindowsForms.exe";
+            process.Start();
+            process.WaitForExit();
+            process.Close();
+        }
+        static void AuthWPF()
+        {
+            var process = new Process();
+            process.StartInfo.FileName = $"TestingWPF\\TestingWPF.exe";
+            process.Start();
+            process.WaitForExit();
+            process.Close();
         }
         static void Testing()
         {
