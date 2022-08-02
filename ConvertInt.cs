@@ -32,6 +32,12 @@ namespace Course
         }
         public string Convert()
         {
+            string minus = "";
+            if (number.Length > 0 && number[0] == '-')
+            {
+                minus = "минус ";
+                number = number.Remove(0, 1);
+            }
             foreach (char char2 in number)
             {
                 if (Char.IsNumber(char2) == false)
@@ -58,7 +64,7 @@ namespace Course
                 rub = "ноль рублей ";
             }
 
-            return rub + kopecks;
+            return minus + rub + kopecks;
         }
         void IntToList(string number)
         {

@@ -14,8 +14,7 @@ namespace Course
             Console.WriteLine("4. Перевод цифр в слова");
             Console.WriteLine("5. Авторизация. WindowsForms");
             Console.WriteLine("6. Авторизация. WPF");
-            Console.WriteLine("");
-            Console.WriteLine("9. Тестовая область");
+            Console.WriteLine("7. Работа с рублями");
 
             string word = Console.ReadLine();
             if (word.Length == 1)
@@ -45,9 +44,10 @@ namespace Course
                 {
                     AuthWPF();
                 }
-                else if (firstChar == '9')
+                else if (firstChar == '7')
                 {
-                    Testing();
+                    Ruble ruble = new Ruble();
+                    ruble.Start();
                 }
             }
             Main();
@@ -87,11 +87,6 @@ namespace Course
             process.Start();
             process.WaitForExit();
             process.Close();
-        }
-        static void Testing()
-        {
-            TEST test = new TEST();
-            test.StartGame();
         }
     }
 }
