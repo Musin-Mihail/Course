@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Course
 {
-    internal class Ruble
+    public class Ruble
     {
         public void Start()
         {
@@ -43,28 +43,28 @@ namespace Course
             Console.ReadLine();
         }
     }
-    class RubleClass
+    public class RubleClass
     {
         public static string operator +(RubleClass a, RubleClass b)
         {
             float number = summ(a.numberRubles, a.numberKopecks) + summ(b.numberRubles, b.numberKopecks);
             ConvertInt convertInt = new ConvertInt();
             convertInt.number = number.ToString();
-            return number + " : " + convertInt.Convert();
+            return convertInt.Convert();
         }
         public static string operator -(RubleClass a, RubleClass b)
         {
             float number = summ(a.numberRubles, a.numberKopecks) - summ(b.numberRubles, b.numberKopecks);
             ConvertInt convertInt = new ConvertInt();
             convertInt.number = number.ToString();
-            return number + " : " + convertInt.Convert();
+            return convertInt.Convert();
         }
         public static string operator *(RubleClass a, RubleClass b)
         {
             float number = summ(a.numberRubles, a.numberKopecks) * summ(b.numberRubles, b.numberKopecks);
             ConvertInt convertInt = new ConvertInt();
             convertInt.number = number.ToString();
-            return number + " : " + convertInt.Convert();
+            return convertInt.Convert();
         }
         public static string operator /(RubleClass a, RubleClass b)
         {
@@ -79,7 +79,7 @@ namespace Course
                 float number = num1 / num2;
                 ConvertInt convertInt = new ConvertInt();
                 convertInt.number = number.ToString();
-                return number + " : " + convertInt.Convert();
+                return convertInt.Convert();
             }
         }
         public static bool operator ==(RubleClass a, RubleClass b)
