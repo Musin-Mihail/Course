@@ -2,7 +2,7 @@
 {
     public class ProfilesClass
     {
-        public List<Profile> profiles = new List<Profile>();
+        public static List<Profile> profiles = new List<Profile>();
         public void CreateProfile(string FirstName, string LastName, string MiddleName, string Foto, string SocialID, string Email, string PhoneNumber)
         {
             Profile profile = new Profile();
@@ -27,6 +27,57 @@
                 text += profile.PhoneNumber + "\n";
             }
             return text;
+        }
+        public bool UpdateProfile(int index, Profile profile)
+        {
+            try
+            {
+                if (profile.FirstName != null)
+                {
+                    profiles[index].FirstName = profile.FirstName;
+                }
+                if (profile.LastName != null)
+                {
+                    profiles[index].LastName = profile.LastName;
+                }
+                if (profile.MiddleName != null)
+                {
+                    profiles[index].MiddleName = profile.MiddleName;
+                }
+                if (profile.Foto != null)
+                {
+                    profiles[index].Foto = profile.Foto;
+                }
+                if (profile.SocialID != null)
+                {
+                    profiles[index].SocialID = profile.SocialID;
+                }
+                if (profile.Email != null)
+                {
+                    profiles[index].Email = profile.Email;
+                }
+                if (profile.PhoneNumber != null)
+                {
+                    profiles[index].PhoneNumber = profile.PhoneNumber;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool DeleteProfile(int index)
+        {
+            try
+            {
+                profiles.RemoveAt(index);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
     public class Profile
