@@ -32,31 +32,31 @@
         {
             try
             {
-                if (profile.FirstName != null)
+                if (profile.FirstName != null && profile.FirstName != "string")
                 {
                     profiles[index].FirstName = profile.FirstName;
                 }
-                if (profile.LastName != null)
+                if (profile.LastName != null && profile.LastName != "string")
                 {
                     profiles[index].LastName = profile.LastName;
                 }
-                if (profile.MiddleName != null)
+                if (profile.MiddleName != null && profile.MiddleName != "string")
                 {
                     profiles[index].MiddleName = profile.MiddleName;
                 }
-                if (profile.Foto != null)
+                if (profile.Foto != null && profile.Foto != "string")
                 {
                     profiles[index].Foto = profile.Foto;
                 }
-                if (profile.SocialID != null)
+                if (profile.SocialID != null && profile.SocialID != "string")
                 {
                     profiles[index].SocialID = profile.SocialID;
                 }
-                if (profile.Email != null)
+                if (profile.Email != null && profile.Email != "string")
                 {
                     profiles[index].Email = profile.Email;
                 }
-                if (profile.PhoneNumber != null)
+                if (profile.PhoneNumber != null && profile.PhoneNumber != "string")
                 {
                     profiles[index].PhoneNumber = profile.PhoneNumber;
                 }
