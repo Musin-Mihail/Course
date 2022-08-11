@@ -28,6 +28,104 @@ namespace Course
             passwords.Add(newpassword);
             return newpassword;
         }
+        public string CreateAndCovert(int length)
+        {
+            string path = "text.txt";
+            List<string> stringList = new List<string>(StaticClass.StringToList(path).Split(' '));
+            for (int y = 0; y < 10; y++)
+            {
+                if (length == 0)
+                {
+                    break;
+                }
+                int templength = length;
+                StaticClass.ListStringShuffling(stringList);
+                string newPasword = "";
+                List<string> selectedWords = new List<string>();
+                Random random = new Random();
+                for (int i = 0; i < 100; i++)
+                {
+                    char firstChar = rusSmallLetterList[random.Next(0, rusSmallLetterList.Count)];
+                    foreach (var item in stringList)
+                    {
+                        if (item.Length > 0 && item[0] == firstChar && item.Length <= templength && selectedWords.Contains(item) == false)
+                        {
+                            if (templength == 0)
+                            {
+                                break;
+                            }
+                            else if (templength == 1 && item.Length > 0)
+                            {
+                                templength -= item.Length;
+                                newPasword += item;
+                                selectedWords.Add(item);
+                                Console.Write(item + " ");
+                            }
+                            else if (item.Length > 1)
+                            {
+                                templength -= item.Length;
+                                newPasword += item;
+                                selectedWords.Add(item);
+                                Console.Write(item + " ");
+                            }
+                        }
+                    }
+                }
+                Console.Write("- ");
+                if (templength != 0)
+                {
+                    Console.WriteLine(newPasword + " - " + newPasword.Length + " - Не получилось подобрать пароль");
+                }
+                else
+                {
+                    Console.Write(newPasword + " - ");
+                    Console.Write(convert(newPasword) + "\n");
+                }
+            }
+            Console.ReadLine();
+            return "";
+        }
+        string convert(string password)
+        {
+            List<NewChar> listChar = new List<NewChar>();
+            string newPassword = "";
+            int count = 0;
+            for (int i = 0; i < password.Length; i++)
+            {
+                bool match = false;
+                foreach (NewChar item in listChar)
+                {
+                    if (item.char1 == password[i])
+                    {
+                        newPassword += item.number;
+                        Console.Write("(" +item.char1 + item.number+")");
+                        match = true;
+                        break;
+                    }
+                }
+                if (match == false)
+                {
+                    NewChar newChar = new NewChar();
+                    newChar.char1 = password[i];
+                    newChar.number = count;
+                    newPassword += count.ToString();
+                    listChar.Add(newChar);
+                    count++;
+                    Console.Write("(" + newChar.char1 + newChar.number + ")");
+                    if (count > 9)
+                    {
+                        count = 0;
+                    }
+                }
+            }
+            Console.Write(" - ");
+            return newPassword;
+        }
+        class NewChar
+        {
+            public char char1 = ' ';
+            public int number = 0;
+        }
         List<char> SymbolMixing(Options options)
         {
             List<char> newCharlist = new List<char>();

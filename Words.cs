@@ -42,19 +42,8 @@
         }
         void ComputerMove()
         {
-            ListShuffling();
+            StaticClass.ListStringShuffling(dictionary);
             SearchWord();
-        }
-        void ListShuffling()
-        {
-            Random rnd = new Random();
-            for (int i = 0; i < dictionary.Count; i++)
-            {
-                string temp = dictionary[i];
-                int randomIndex = rnd.Next(0, dictionary.Count - 1);
-                dictionary[i] = dictionary[randomIndex];
-                dictionary[randomIndex] = temp;
-            }
         }
         void SearchWord()
         {

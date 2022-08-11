@@ -1,11 +1,56 @@
-﻿namespace Course
+﻿using System.Collections.Generic;
+
+namespace Course
 {
+    static class StaticClass
+    {
+        public static string StringToList(string path)
+        {
+            Console.Clear();
+            string text = File.ReadAllText(path);
+
+            //for (int i = 0; i < text.Length; i++)
+            //{
+            //    Console.Write(text[i]);
+            //}
+            //Console.WriteLine("");
+
+            text = text.Replace('\n', ' ');
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] != ' ')
+                {
+                    if (Char.IsLetter(text[i]) == false)
+                    {
+                        text = text.Remove(i, 1);
+                        i--;
+                    }
+                }
+            }
+            //for (int i = 0; i < text.Length; i++)
+            //{
+            //    Console.Write(text[i]);
+            //}
+            return text;
+        }
+        public static void ListStringShuffling(List<string> List)
+        {
+            Random rnd = new Random();
+            for (int i = 0; i < List.Count; i++)
+            {
+                string temp = List[i];
+                int randomIndex = rnd.Next(0, List.Count - 1);
+                List[i] = List[randomIndex];
+                List[randomIndex] = temp;
+            }
+        }
+    }
     internal class CountWords
     {
         public void StartGame()
         {
             string path = "text.txt";
-            List<string> stringList = new List<string>(GetText(path).Split(' '));
+            List<string> stringList = new List<string>(StaticClass.StringToList(path).Split(' '));
             List<word> words = SaveWords(stringList);
 
             int totalWords = 0;
@@ -21,35 +66,7 @@
             }
             Console.ReadKey();
         }
-        string GetText(string path)
-        {
-            Console.Clear();
-            string text = File.ReadAllText(path);
 
-            for (int i = 0; i < text.Length; i++)
-            {
-                Console.Write(text[i]);
-            }
-            Console.WriteLine("");
-
-            text = text.Replace('\n', ' ');
-            for (int i = 0; i < text.Length; i++)
-            {
-                if (text[i] != ' ')
-                {
-                    if (Char.IsLetter(text[i]) == false)
-                    {
-                        text = text.Remove(i, 1);
-                        i--;
-                    }
-                }
-            }
-            for (int i = 0; i < text.Length; i++)
-            {
-                Console.Write(text[i]);
-            }
-            return text;
-        }
         List<word> SaveWords(List<string> stringList)
         {
             List<word> words = new List<word>();

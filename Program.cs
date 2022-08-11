@@ -49,6 +49,11 @@ namespace Course
                     Ruble ruble = new Ruble();
                     ruble.Start();
                 }
+                else if (firstChar == '8')
+                {
+                    Password password = new Password();
+                    password.CreateAndCovert(20);
+                }
             }
             Main();
         }
