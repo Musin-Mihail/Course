@@ -54,6 +54,11 @@ namespace Course
                     Password password = new Password();
                     password.CreateAndCovert(20);
                 }
+                else if (firstChar == '9')
+                {
+                    ConverArray converArray = new ConverArray();
+                    converArray.start();
+                }
             }
             Main();
         }
