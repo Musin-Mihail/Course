@@ -56,8 +56,13 @@ namespace Course
                 }
                 else if (firstChar == '9')
                 {
-                    ConverArray converArray = new ConverArray();
-                    converArray.start();
+                    Console.Clear();
+                    //ConverArray converArray = new ConverArray();
+                    //converArray.start();
+                    Sinus sinus = new Sinus();
+                    sinus.Start();
+                    Console.ReadLine();
+
                 }
             }
             Main();
